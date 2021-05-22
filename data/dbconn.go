@@ -31,6 +31,7 @@ func Migrate() {
 		&dbTable.Category{},
 	}
 	db.AutoMigrate(tableList...)
+	db.Commit()
 }
 
 // Create a admin user
@@ -50,5 +51,6 @@ func CreateInitUser() {
 			UserName: "Admin User", Account: "admin", Password: "admin",
 		})
 	}
+	db.Commit()
 
 }

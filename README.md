@@ -40,7 +40,7 @@ Content-Type: `application/json`
 ##### Body
 ```javascript
 {
-  "title": "Meeting"
+  "Title": "Meeting"
 }
 ```
 
@@ -65,7 +65,7 @@ Content-Type: `application/json`
 {
   "Title":  "Task Manager 開發",    
   "Description": "API 撰寫",
-  "Category":  1,               // Use Category ID
+  "CategoryID":  1,               // Use Category ID
   "Month":  4,                  // 0-11
   "Week":  2,                   // 1-5
   "Weekday":  4,                // 0-6
