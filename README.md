@@ -3,7 +3,7 @@
 
 It's a small project for practicing Golang. Feel free to clone and give it a try, or report issues. Thanks for your comment.
 
-<br>
+
 ## 1. Technology Stack
 ---
 ||Choice|
@@ -11,7 +11,7 @@ It's a small project for practicing Golang. Feel free to clone and give it a try
 |Server|Golang|
 |Database|Mariadb|
 |API|RESTFUL|
-<br>
+
 ## 2. Before Start
 ---
 * Install Golang
@@ -29,7 +29,7 @@ MariaDB> CREATE DATABASE task_manager;
 $ go run main.go
 $ Task Manager Server is running on http://localhost:7777
 ```
-<br>
+
 ## 3. API Document
 ---
 ### /set/category `POST`
