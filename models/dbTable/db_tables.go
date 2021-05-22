@@ -38,7 +38,7 @@ type Task struct {
 	DeletedAt   time.Time `gorm:"type:date;"`
 	Title       string    `gorm:"type:varchar(255)"`
 	Description string    `gorm:"type:varchar(255)"`
-	Category    uint
+	CategoryID  uint
 	Month       uint
 	Week        uint
 	Weekday     uint

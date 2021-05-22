@@ -13,13 +13,22 @@ import (
 // Set Task
 func SetTask(c *gin.Context) {
 	var reqBody api.Task
-	c.BindJSON(&reqBody)
+
+	err := c.ShouldBindJSON(&reqBody)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Code":    http.StatusBadRequest,
+			"Success": false,
+			"Data":    "Incorrect request body.",
+		})
+		return
+	}
 
 	db := data.ConnectDB()
 	db.Create(&dbTable.Task{
 		Title:       reqBody.Title,
 		Description: reqBody.Description,
-		Category:    reqBody.Category,
+		CategoryID:  reqBody.CategoryID,
 		Month:       reqBody.Month,
 		Week:        reqBody.Week,
 		Weekday:     reqBody.Weekday,
@@ -27,6 +36,7 @@ func SetTask(c *gin.Context) {
 	})
 	var task api.Task
 	db.Last(&task)
+	db.Commit()
 
 	c.JSON(http.StatusOK, gin.H{
 		"Code":    http.StatusOK,
@@ -48,12 +58,15 @@ func FetchTask(c *gin.Context) {
 	db := data.ConnectDB()
 	query := db.Find(&tasks)
 	query.Count(&count)
-	db.Limit(reqBody.Per).Offset(reqBody.Page).Find(&result)
+	db.Order("id DESC").
+		Offset(reqBody.Page * reqBody.Per).
+		Limit(reqBody.Per).
+		Find(&result)
 
 	c.JSON(http.StatusOK, gin.H{
 		"Code":    http.StatusOK,
 		"Success": true,
-		"Data":    tasks,
+		"Data":    result,
 		"Count":   count,
 		"Page":    reqBody.Page,
 		"Per":     reqBody.Per,

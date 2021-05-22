@@ -13,14 +13,25 @@ import (
 // Set Category
 func SetCategory(c *gin.Context) {
 	var reqBody api.Category
-	c.BindJSON(&reqBody)
+
+	err := c.ShouldBindJSON(&reqBody)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Code":    http.StatusBadRequest,
+			"Success": false,
+			"Data":    "Incorrect request body.",
+		})
+		return
+	}
 
 	db := data.ConnectDB()
 	db.Create(&dbTable.Category{
 		Title: reqBody.Title,
 	})
+
 	var category api.Category
 	db.Last(&category)
+	db.Commit()
 
 	c.JSON(http.StatusOK, gin.H{
 		"Code":    http.StatusOK,
@@ -36,8 +47,9 @@ func FetchCategory(c *gin.Context) {
 	var count int64
 
 	db := data.ConnectDB()
-	query := db.Find(&categories)
+	query := db.Order("id DESC").Find(&categories)
 	query.Count(&count)
+	db.Commit()
 
 	c.JSON(http.StatusOK, gin.H{
 		"Code":    http.StatusOK,
