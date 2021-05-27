@@ -1,5 +1,7 @@
 package api
 
+import "time"
+
 type User struct {
 	ID       uint
 	UserName string
@@ -13,13 +15,11 @@ type Category struct {
 
 type Task struct {
 	ID          uint
-	Title       string  `binding:"required"`
-	Description string  `binding:"required"`
-	CategoryID  uint    `binding:"required"`
-	Month       uint    `binding:"required"`
-	Week        uint    `binding:"required"`
-	Weekday     uint    `binding:"required"`
-	WorkingHour float64 `binding:"required"`
+	CreatedAt   time.Time
+	Title       string `binding:"required"`
+	Description string `binding:"required"`
+	CategoryID  uint   `binding:"required"`
+	LimitDate   string `binding:"required"`
 }
 
 type TaskQuery struct {
@@ -27,10 +27,7 @@ type TaskQuery struct {
 	Title       string
 	Description string
 	Category    uint
-	Month       uint
-	Week        uint
-	Weekday     uint
-	WorkingHour float64
+	LimitDate   string
 	Page        int
 	Per         int
 }

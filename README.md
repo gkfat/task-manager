@@ -66,10 +66,7 @@ Content-Type: `application/json`
   "Title":  "Task Manager 開發",    
   "Description": "API 撰寫",
   "CategoryID":  1,               // Use Category ID
-  "Month":  4,                  // 0-11
-  "Week":  2,                   // 1-5
-  "Weekday":  4,                // 0-6
-  "WorkingHour": 1.5
+  "LimitDate": "2021-05-23 04:12:29" // Time Format: YYYY-MM-dd HH:mm:ss
 }
 ```
 
