@@ -32,7 +32,7 @@ $ Task Manager Server is running on http://localhost:7777
 
 ## 3. API Document
 ---
-### /set/category `POST`
+### /api/set/category `POST`
 #### Request
 ##### Headers
 Content-Type: `application/json`
@@ -55,7 +55,7 @@ Content-Type: `application/json`
 ```
 
 ---
-### /set/task `POST`
+### /api/set/task `POST`
 #### Request
 ##### Headers
 Content-Type: `application/json`
@@ -81,7 +81,7 @@ Content-Type: `application/json`
 ```
 
 ---
-### /fetch/category `GET`
+### /api/fetch/category `GET`
 #### Request
 ##### Headers
 None
@@ -105,7 +105,7 @@ None
 ```
 
 ---
-### /fetch/task `POST`
+### /api/fetch/task `POST`
 #### Request
 ##### Headers
 Content-Type: `application/json`

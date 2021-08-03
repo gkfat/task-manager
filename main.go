@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	g := gin.New()
+	g := gin.Default()
 
 	data.Migrate()
 	data.CreateInitUser()
@@ -30,12 +30,12 @@ func main() {
 	// 	user.POST("/login", controllers.Login)
 	// 	user.POST("/logout", controllers.Logout)
 	// }
-	set := g.Group("/set")
+	set := g.Group("api/set")
 	{
 		set.POST("category", controllers.SetCategory)
 		set.POST("task", controllers.SetTask)
 	}
-	fetch := g.Group("/fetch")
+	fetch := g.Group("api/fetch")
 	{
 		fetch.GET("/category", controllers.FetchCategory)
 		fetch.POST("/task", controllers.FetchTask)
